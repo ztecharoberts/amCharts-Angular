@@ -6,7 +6,7 @@ angular.module('amChartsDirective', []).directive('amChart', ['$q', function ($q
         restrict: 'E',
         replace: true,
         scope: {
-            id: '@',
+            id: '=',
             options: '=',
             height: '@',
             width: '@'
