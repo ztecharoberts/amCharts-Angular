@@ -106,6 +106,29 @@ angular.module('amChartsDirective', []).directive('amChart', ['$q', function ($q
                                         for (var i = 0; i < keys.length; i++) {
                                             if (typeof a[keys[i]] !== 'object') {
                                                 valueAxis[keys[i]] = a[keys[i]];
+                                            } else if (keys[i] === 'guides') {
+                                                var guides = a[keys[i]];
+                                                for (var j = 0; j < guides.length; j++) {
+                                                    valueAxis.addGuide(guides[j]);
+                                                }
+                                            }
+                                        }
+                                        chart.addValueAxis(valueAxis);
+                                    };
+
+                                    if (o.valueAxes && o.valueAxes.length > 0) {
+                                        for (var i = 0; i < o.valueAxes.length; i++) {
+                                            addValueAxis(o.valueAxes[i]);
+                                        }
+                                    }
+
+                                    var addGuides = function (a) {
+                                        var guide = new AmCharts.ValueAxis();
+
+                                        var keys = Object.keys(a);
+                                        for (var i = 0; i < keys.length; i++) {
+                                            if (typeof a[keys[i]] !== 'object') {
+                                                valueAxis[keys[i]] = a[keys[i]];
                                             }
                                         }
                                         chart.addValueAxis(valueAxis);
